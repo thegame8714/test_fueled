@@ -1,0 +1,39 @@
+.header-title {
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  position: absolute;
+  padding: 26px 0 26px 46px;
+  font-size: 18px;
+}
+
+.header-title-form {
+  font-weight: bold;
+}
+
+.header-cart {
+  position: absolute;
+  padding: 27px 45px 27px 0;
+  right: 0;
+}
+
+.header-cart-text {
+  position: relative;
+  color: white;
+  font-size: 16px;
+  right: 0;
+  padding-right: 3px;
+}
+
+.header-cart-itmes {
+  position: relative;
+  background-color: white;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  padding: 2px 5px;
+  right: 0;
+}
+
+.header-cart-itmes-text {
+}
