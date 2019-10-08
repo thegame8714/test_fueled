@@ -1,0 +1,92 @@
+.footer {
+  margin: 0 46px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer label,
+.footer .delivery_info {
+  font-size: 16px;
+  display: inline-block;
+}
+
+.footer textarea {
+  background-color: black;
+  width: 100%;
+  height: 188px;
+  border-radius: 6px;
+  border-color: black;
+  margin-top: 13px;
+  resize: none;
+}
+
+.delivery_info_text {
+  margin-top: 13px;
+  line-height: 136%;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 364px;
+}
+
+.total_ctas {
+  min-width: 311px;
+}
+
+.sub_total,
+.tax,
+.total {
+  font-size: 16px;
+}
+
+.footer .cost,
+.footer .total_cost {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px;
+}
+
+.footer .total_cost {
+  background-color: black;
+}
+
+.footer .value {
+  font-weight: bold;
+}
+
+.footer .ctas {
+  margin-top: 43px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer .ctas_item {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 19px;
+}
+
+.footer .checkout {
+  padding: 22px 32px;
+  color: white;
+  background-color: #ae0000;
+  border-radius: 6px;
+  border-color: #ae0000;
+  width: 152px;
+  margin: auto;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.footer .or {
+  font-size: 14px;
+  display: inline-block;
+}
+
+.footer .continue_shopping {
+  background: none;
+  color: white;
+  text-decoration: underline;
+  border: none;
+  font-size: 14px;
+  display: inline-block;
+}

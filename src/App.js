@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Header from "./header/Header";
+import Main from "./main/Main";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <header className="cart-header">
         <Header />
       </header>
+      <Main />
     </div>
   );
 }

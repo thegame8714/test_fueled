@@ -9,7 +9,9 @@ const Header = () => (
     <span className="header-cart">
       <span className="header-cart-text">Cart</span>
       <span className="header-cart-itmes">
-        <span className="header-cart-items-text">3</span>
+        <span className="header-cart-items-text" data-testid="items-count">
+          3
+        </span>
       </span>
     </span>
   </div>
