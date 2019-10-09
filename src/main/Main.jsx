@@ -1,7 +1,7 @@
-import React from "react";
-import "./Main.css";
-import CartTable from "./CartTable";
-import Footer from "./Footer";
+import React from 'react'
+import './Main.css'
+import CartTable from './CartTable'
+import Footer from './Footer'
 
 const Main = () => (
   <div className="main">
@@ -16,6 +16,6 @@ const Main = () => (
     <CartTable />
     <Footer />
   </div>
-);
+)
 
-export default Main;
+export default Main

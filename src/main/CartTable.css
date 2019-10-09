@@ -67,12 +67,14 @@
 }
 
 .product_quantity {
-  min-width: 46px;
+  max-width: 46px;
   text-align: center;
   background: black;
   border-radius: 6px;
   padding: 13px 0;
   display: inline-block;
+  color: white;
+  border: none;
 }
 
 .tr.even .product_quantity {
@@ -103,7 +105,7 @@
   right: -38.83%;
   top: 100%;
   bottom: 0%;
-  content: "";
+  content: '';
   border: 1px solid #ffffff;
   transform: rotate(-45deg);
 }
@@ -114,7 +116,7 @@
   right: -38.83%;
   top: 100%;
   bottom: 0%;
-  content: "";
+  content: '';
   border: 1px solid #ffffff;
   transform: rotate(45deg);
 }

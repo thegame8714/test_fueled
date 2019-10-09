@@ -1,77 +1,107 @@
-import React from "react";
-import "./CartTable.css";
+import React from 'react'
+import './CartTable.css'
+import { useCartContext } from '../state'
 
-const CartTable = () => (
-  <div data-testid="cart" className="cart">
-    <div className="thead">
-      <div className="tr">
-        <span className="th"></span>
-        <span className="th product_cell">Product Name</span>
-        <span className="th">Price</span>
-        <span className="th">Quantity</span>
-        <span className="th">Remove</span>
-      </div>
-    </div>
-    <div className="tbody">
-      <div className="tr">
-        <span className="td product_image">
-          <img src="./jetsky.png" alt="Jet Sky" />
-        </span>
-        <span className="td product_cell">
-          <div className="product_name">Jet Ski</div>
-          <div className="product_id">434556256</div>
-        </span>
-        <span className="td">$1,500</span>
-        <span className="td">
-          <span className="product_quantity">1</span>
-          <button className="product_update">Update</button>
-        </span>
-        <span className="td">
-          <button className="product_remove">
-            <span></span>
-          </button>
-        </span>
-      </div>
-      <div className="tr even">
-        <span className="td product_image">
-          <img src="./bubble_wrap.png" alt="Bubble Wrap" />
-        </span>
-        <span className="td product_cell">
-          <div className="product_name">Bubble Wrap</div>
-          <div className="product_id">345245865</div>
-        </span>
-        <span className="td">$440</span>
-        <span className="td">
-          <span className="product_quantity">1</span>
-          <button className="product_update">Update</button>
-        </span>
-        <span className="td">
-          <button className="product_remove">
-            <span></span>
-          </button>
-        </span>
-      </div>
-      <div className="tr">
-        <span className="td product_image">
-          <img src="./croc_pot.jpeg" alt="Crock Pot" />
-        </span>
-        <span className="td product_cell">
-          <div className="product_name">Crock Pot</div>
-          <div className="product_id">987123654</div>
-        </span>
-        <span className="td">$56</span>
-        <span className="td">
-          <span className="product_quantity">1</span>
-          <button className="product_update">Update</button>
-        </span>
-        <span className="td">
-          <button className="product_remove">
-            <span></span>
-          </button>
-        </span>
-      </div>
-    </div>
-  </div>
-);
+const currencyToSymbol = currency => {
+  const currenciesToSymbol = {
+    USD: '$',
+    GBP: '£',
+    EUR: '€'
+  }
 
-export default CartTable;
+  return currenciesToSymbol[currency] || '$'
+}
+
+const CartTable = () => {
+  const {
+    state: {
+      cart: { items }
+    },
+    dispatch
+  } = useCartContext()
+
+  const onRemoveClick = itemId => {
+    dispatch({
+      type: 'REMOVE_ITEM',
+      itemId
+    })
+  }
+
+  const onUpdateItem = () => {
+    dispatch({
+      type: 'UPDATE_ITEM'
+    })
+  }
+
+  const onChange = (e, itemId) => {
+    const isNumber = new RegExp(/^[0-9]*$/)
+    const newValue = e.target.value
+    if (isNumber.test(newValue)) {
+      dispatch({
+        type: 'UPDATE_ITEM_QUANTITY',
+        itemId,
+        newQuantity: e.target.value
+      })
+    }
+  }
+
+  return (
+    <div data-testid="cart" className="cart">
+      <div className="thead">
+        <div className="tr">
+          <span className="th"></span>
+          <span className="th product_cell">Product Name</span>
+          <span className="th">Price</span>
+          <span className="th">Quantity</span>
+          <span className="th">Remove</span>
+        </div>
+      </div>
+      {items.length > 0 && (
+        <div className="tbody">
+          {items.map((item, index) => (
+            <div className="tr" key={item.id}>
+              <span className="td product_image">
+                <img src={item.imagePath} alt={item.name} />
+              </span>
+              <span className="td product_cell">
+                <div className="product_name">{item.name}</div>
+                <div className="product_id">{item.id}</div>
+              </span>
+              <span className="td">{`${currencyToSymbol(item.currency)}${
+                item.pricePerItem
+              }`}</span>
+              <span className="td">
+                <label htmlFor={`quantity-item-${index}`} />
+                <input
+                  id={`quantity-item-${item.id}`}
+                  className="product_quantity"
+                  value={item.quantity}
+                  onChange={e => onChange(e, item.id)}
+                  data-testid={`quantity-item-${index}`}
+                />
+                <button
+                  className="product_update"
+                  data-testid={`update-quantity-${index}`}
+                  onClick={() => onUpdateItem()}
+                >
+                  Update
+                </button>
+              </span>
+              <span className="td">
+                <button
+                  className="product_remove"
+                  onClick={() => onRemoveClick(item.id)}
+                  data-testid={`remove-item-${index}`}
+                >
+                  <span></span>
+                </button>
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default CartTable
